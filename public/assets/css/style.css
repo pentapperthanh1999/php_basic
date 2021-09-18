@@ -1,0 +1,53 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.white-box .box-title {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.btn-add {
+    margin: 10px 0;
+}
+
+
+.action button {
+    text-decoration: none;
+    padding: 5px;
+    border: none;
+}
+
+.action button .fa-edit {
+    color: white;
+}
+
+.action button .fa-eye {
+    color: white;
+}
+
+.action button .fa-trash-alt{
+    color: white;
+}
+
+img.avatar-cover {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.row_element td {
+    vertical-align:  middle!important;
+}
+
+.modal-backdrop {
+  z-index: 0;
+}
+.bootstrap-switch .bootstrap-switch-handle-on, .bootstrap-switch .bootstrap-switch-handle-off,
+.bootstrap-switch .bootstrap-switch-label {
+    display: inline-block !important;
+    height: auto !important;
+}
