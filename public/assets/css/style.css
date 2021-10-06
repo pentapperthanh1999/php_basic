@@ -13,7 +13,6 @@
     margin: 10px 0;
 }
 
-
 .action button {
     text-decoration: none;
     padding: 5px;
@@ -46,8 +45,16 @@ img.avatar-cover {
 .modal-backdrop {
   z-index: 0;
 }
+
 .bootstrap-switch .bootstrap-switch-handle-on, .bootstrap-switch .bootstrap-switch-handle-off,
 .bootstrap-switch .bootstrap-switch-label {
     display: inline-block !important;
     height: auto !important;
+}
+
+.custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
 }

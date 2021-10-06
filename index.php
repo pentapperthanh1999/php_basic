@@ -17,6 +17,7 @@
     $users = new UserController();
     $result = $users->readData();
 ?>
+
 <body>
     <div class="container-fluid">
         <div class="col-sm-12">
@@ -79,7 +80,9 @@ function loadData() {
         }
     });
 }
-
+$("#edit_avatar").change(function(){
+  $("#edit_avatar").text(this.files[0].name);
+});
 /*function toggleStatus(status) {
     $('.slider').click(function() {
         // var attrChecked = $('#is_active');
@@ -114,7 +117,7 @@ $(document).ready(function() {
 
 $(function() {
     $("#is_active").bootstrapSwitch({
-        onSwitchChange: function(e, state) { 
+        onSwitchChange: function(e, state) {
             if ( state == true ) {
                 $(this).attr('value', 1);
             } else {
@@ -122,7 +125,15 @@ $(function() {
             }
         }
     });
-
+    $("#edit_is_active").bootstrapSwitch({
+        onSwitchChange: function(e, state) {
+            if ( state == true ) {
+                $(this).attr('value', 1);
+            } else {
+                $(this).attr('value', 0);
+            }
+        }
+    });
 });
 
 //tao nguoi dung moi bang ajax
@@ -176,8 +187,8 @@ $(document).ready(function(){
                 console.log(data);
             }
         });
-        
     });
+
     $(document).on('click' , '.btn-edit' ,function(e) {
         //e.preventDefault();
             var id = this.id;
@@ -199,14 +210,21 @@ $(document).ready(function(){
                 /*$('#edit_avatar').val(response.avatar);*/
                 $("#edit_is_active").val(response.is_active);
                 $("#id").val(id);
+                var status_value = $("#edit_is_active");
+                /*if ( response.is_active == 1) {
+                    status_value.attr('checked', true);
+                } else {
+                    status_value.attr('checked', false);
+                }*/
                 $("#editModal").modal('show');
             }
         });
+        
     });
     $(document).on('submit' ,'#edit_user_form' , function(e) {
         //e.preventDefault();
-        // e.stopImmediatePropagation();
-        console.log('da click  submit')
+        //e.stopImmediatePropagation();
+
         var edit_username = $('#edit_username').val();
         var edit_password = $('#edit_password').val();
         var edit_fullname = $('#edit_fullname').val();
@@ -215,16 +233,8 @@ $(document).ready(function(){
         var edit_day_of_birth = day.getFullYear() + '-' + (day.getMonth() + 1) + '-' + day.getDate();
         var edit_avatar = $('#edit_avatar').val();
         var edit_is_active = $('#edit_is_active').val();
-
+        console.log(edit_is_active);
         var editFormData = new FormData(jQuery("#edit_user_form")[0]);
-
-        // editFormData.append('edit_username', edit_username);
-        // editFormData.append('edit_password', edit_password);
-        // editFormData.append('edit_fullname', edit_fullname);
-        // editFormData.append('edit_day_of_birth', edit_day_of_birth);
-        //editFormData.append('edit_avatar', edit_avatar);
-        // editFormData.append('edit_is_active', edit_is_active);
-        
         $.ajax({
             url: 'edit.php',
             type: 'POST',
@@ -233,7 +243,6 @@ $(document).ready(function(){
             contentType: false,
             cache:false,
             success:function(response) {
-                console.log('gui du lieu thanh cong');
                 $("#editModal").modal('hide');
                 loadData();
             }
@@ -266,25 +275,6 @@ $(document).ready(function(){
             });
         }
     });
-    //tim kiem bang ajax;
-    /*$('#search-input').keyup(function() {
-        var txtSearch = $(this).val();
-        if ( txtSearch != '' ) {
-            console.log("no Result")
-        } else {
-            $.ajax({
-                url: 'search.php',
-                method: 'POST',
-                data: {
-                    txtSearch: txtSearch
-                },
-                dataType: 'text',
-                success: function(data) {
-                    $('#search-input').html(data);
-                }
-            })
-        }
-    });*/
 });
     
 </script>

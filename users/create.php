@@ -32,7 +32,7 @@
                     </div>
                     <div class="form-group" class="switch_status">
                         <label>Status:</label>
-                        <input type="checkbox" class="make-switch" id="is_active" name="is_active" data-on-color="primary" data-off-color="info" value="true">
+                        <input type="checkbox" class="make-switch" id="is_active" name="is_active" data-on-color="primary" data-off-color="info" value="0">
                     </div>
                 </div>
                 <div class="modal-footer">

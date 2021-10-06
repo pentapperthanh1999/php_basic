@@ -33,7 +33,7 @@ class UserController
             $conn = $db->openConnect();
 
             $sql = "SELECT * FROM `tbl_users` WHERE id=" . $id . " ORDER BY id DESC";
-            
+
             $result = $conn->query($sql);
             $result = mysqli_fetch_array($result);
             $db->closeConnect();
@@ -49,6 +49,7 @@ class UserController
     public function uploadFile($file, $tmp_file)
     {   
         $uploadFile = '';
+
         if ( !empty($file) ) {
             $fileName = basename($file);
             //xoa khoang trang trong ten file img
@@ -99,15 +100,19 @@ class UserController
         $password = $_POST['edit_password'];
         $fullname = $_POST['edit_fullname'];
         $day_of_birth = $_POST['edit_day_of_birth'];
-        $is_active = $_POST['edit_is_active'];
-
-        $avatar = self::uploadFile($_FILES['edit_avatar']['name']);
-
+        if (isset($_POST['edit_is_active']) == 1) {
+            $is_active = 1;
+        } else {
+            $is_active = 0;
+        }
+        // $is_active = $_POST['edit_is_active'];
+        $avatar = self::uploadFile($_FILES['edit_avatar']['name'], $_FILES['edit_avatar']['tmp_name']);
         $db = new Database();
         
         $conn = $db->openConnect();
         
         $sql = "UPDATE tbl_users SET username = '" . $username . "' , password='" . $password . "', fullname='" . $fullname . "', day_of_birth='" . $day_of_birth . "', avatar='" . $avatar . "', is_active='" . $is_active . "' WHERE id= '". $id . "' " ;
+        print_r($sql);
         $conn->query($sql);
 
         $db->closeConnect();
@@ -124,17 +129,6 @@ class UserController
         } else {
             echo "ERROR: Could not able to execute $sql. " . mysqli_error($conn);
         }
-
-        $db->closeConnect();
-    }
-
-    public function search($key)
-    {
-        $db = new Database();
-        $conn = $db->openConnect();
-        $key = $_POST["search"];
-        $sql = "SELECT * FROM tbl_users WHERE username LIKE '%". $key ."%'";
-        $conn->query($sql);
         $db->closeConnect();
     }
 }

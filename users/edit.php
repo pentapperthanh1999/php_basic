@@ -28,14 +28,12 @@
                     </div>
                     <div class="form-group">
                         <label for="avatar" class="col-form-label">Avatar:</label>
-                        <input type="file" class="form-control" accept="image/*" id="edit_avatar" name="edit_avatar"></input>
+                        <input type="file" class="form-control" accept="image/*" id="edit_avatar" name="edit_avatar">
+                        </input>
                     </div>
                     <div class="form-group" class="switch_status">
                         <label>Status:</label>
-                        <label class="switch">
-                        <input type="checkbox" id="edit_is_active"  name="edit_is_active">
-                        <span class="slider"></span>
-                        </label>
+                        <input type="checkbox" class="make-switch" id="edit_is_active" name="edit_is_active" data-on-color="primary" data-off-color="info">
                     </div>
                     <div class="form-group">
                         <div class="row">
